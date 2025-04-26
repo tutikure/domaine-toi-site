@@ -106,24 +106,35 @@
     <!-- Contact -->
     <section id="contact">
       <h2>Contact</h2>
-      <form action="https://formsubmit.co/takasunowine@gmail.com" method="POST">
+      <form id="contactForm" action="https://formsubmit.co/takasunowine@gmail.com" method="POST" target="hiddenFrame">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_subject" value="Domaine Toi サイトから新しいお問い合わせ">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://tutikure.github.io/thankyou.html">
+        
         <input type="hidden" name="_autoresponse" value="お問い合わせありがとうございます。内容を確認し、折り返しご連絡いたします。">
         <input type="text" name="お名前" placeholder="お名前" required>
         <input type="email" name="Email" placeholder="メールアドレス" required>
         <textarea name="メッセージ" rows="5" placeholder="お問い合わせ内容" required></textarea>
         <button type="submit"><i class="fa-regular fa-paper-plane"></i> 送信</button>
       </form>
-    </section>
+            <div id="sendMsg" style="display:none;margin-top:1rem;color:var(--gold);text-align:center;font-weight:700;">送信されました。ありがとうございます。</div>
+      </section>
   </main>
 
   <footer>© 2025 Domaine Toi Winery</footer>
 
   <script>
     document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});}));
+  </script>
+  <!-- hidden iframe to prevent redirect -->
+  <iframe name="hiddenFrame" style="display:none;"></iframe>
+
+  <script>
+    const form=document.getElementById('contactForm');
+    form.addEventListener('submit',()=>{
+      document.getElementById('sendMsg').style.display='block';
+      setTimeout(()=>{document.getElementById('sendMsg').style.display='none';},5000);
+    });
   </script>
 </body>
 </html>
